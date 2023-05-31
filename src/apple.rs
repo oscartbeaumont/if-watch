@@ -73,7 +73,6 @@ impl IfWatcher {
     }
 
     fn resync(&mut self) -> Result<()> {
-        println!("RESYNC");
         let addrs = if_addrs::get_if_addrs()?;
         for old_addr in self.addrs.clone() {
             if addrs
