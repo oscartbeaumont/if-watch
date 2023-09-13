@@ -1,6 +1,6 @@
 //! IP address watching.
-// #![deny(missing_docs)]
-// #![deny(warnings)]
+#![deny(missing_docs)]
+#![deny(warnings)]
 
 pub use ipnet::{IpNet, Ipv4Net, Ipv6Net};
 

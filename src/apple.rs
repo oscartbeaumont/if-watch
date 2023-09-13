@@ -75,11 +75,7 @@ impl IfWatcher {
     fn resync(&mut self) -> Result<()> {
         let addrs = if_addrs::get_if_addrs()?;
         for old_addr in self.addrs.clone() {
-            if addrs
-                .iter()
-                .find(|addr| addr.ip() == old_addr.addr())
-                .is_none()
-            {
+            if !addrs.iter().any(|addr| addr.ip() == old_addr.addr()) {
                 self.addrs.remove(&old_addr);
                 self.queue.push_back(IfEvent::Down(old_addr));
             }
