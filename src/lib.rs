@@ -4,6 +4,9 @@
 
 pub use ipnet::{IpNet, Ipv4Net, Ipv6Net};
 
+#[cfg(all(feature = "tokio", feature = "smol"))]
+compile_error!("Only one of the `tokio` or `smol` features can be enabled at a time.");
+
 #[cfg(target_os = "macos")]
 mod apple;
 #[cfg(target_os = "ios")]
