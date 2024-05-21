@@ -21,7 +21,7 @@ futures = "0.3.19"
 ipnet = "2.3.1"
 log = "0.4.14"
 
-[target.'cfg(target_os = "linux")'.dependencies]
+[target.'cfg(any(target_os = "linux", target_os="android"))'.dependencies]
 rtnetlink = { version = "0.10.0", default-features = false }
 
 [target.'cfg(any(target_os = "macos", target_os = "ios"))'.dependencies]
