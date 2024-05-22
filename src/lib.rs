@@ -1,6 +1,6 @@
 //! IP address watching.
-#![deny(missing_docs)]
-#![deny(warnings)]
+// #![deny(missing_docs)]
+// #![deny(warnings)]
 
 pub use ipnet::{IpNet, Ipv4Net, Ipv6Net};
 
@@ -18,7 +18,7 @@ mod apple;
     target_os = "windows",
 )))]
 mod fallback;
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os="android"))]
 mod linux;
 #[cfg(target_os = "windows")]
 mod win;
@@ -46,6 +46,7 @@ pub use fallback::smol;
     target_os = "linux",
     target_os = "macos",
     target_os = "windows",
+	target_os = "android",
 )))]
 pub use fallback::tokio;
 
@@ -57,7 +58,7 @@ pub use win::tokio;
 #[cfg(feature = "smol")]
 pub use win::smol;
 
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os="android"))]
 #[cfg(feature = "tokio")]
 pub use linux::tokio;
 
